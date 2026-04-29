@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Drag and Drop List</title>
+  <style>
+    body { font-family: Arial; padding: 30px; }
+    ul { list-style: none; padding: 0; max-width: 350px; }
+    li {
+      padding: 14px 18px; margin: 8px 0;
+      background: #4CAF50; color: white;
+      border-radius: 6px; cursor: grab;
+      font-size: 16px;
+    }
+    li.dragging { opacity: 0.4; }
+    li:active { cursor: grabbing; }
+  </style>
+</head>
+<body>
+  <h2>Drag to Reorder</h2>
+  <p>Drag the items below to change their order.</p>
+  <ul id="list">
+    <li draggable="true">🍎 Apple</li>
+    <li draggable="true">🍌 Banana</li>
+    <li draggable="true">🍇 Grapes</li>
+    <li draggable="true">🍊 Orange</li>
+    <li draggable="true">🍓 Strawberry</li>
+  </ul>
+  <script>
+    var list = document.getElementById("list");
+    var dragging = null;
+
+    list.querySelectorAll("li").forEach(function(item) {
+      item.addEventListener("dragstart", function() {
+        dragging = item;
+        item.classList.add("dragging");
+      });
+      item.addEventListener("dragend", function() {
+        item.classList.remove("dragging");
+        dragging = null;
+      });
+      item.addEventListener("dragover", function(e) {
+        e.preventDefault();
+        if (dragging && dragging !== item) {
+          var rect = item.getBoundingClientRect();
+          var mid = rect.top + rect.height / 2;
+          if (e.clientY < mid) {
+            list.insertBefore(dragging, item);
+          } else {
+            list.insertBefore(dragging, item.nextSibling);
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>

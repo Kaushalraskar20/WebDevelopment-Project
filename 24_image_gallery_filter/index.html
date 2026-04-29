@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Image Gallery with Filter</title>
+  <style>
+    body { font-family: Arial; padding: 20px; background: #f5f5f5; }
+    h2 { text-align: center; }
+    .filters { text-align: center; margin: 15px 0; }
+    button { padding: 8px 18px; margin: 4px; border: 2px solid #4CAF50; background: white; border-radius: 20px; cursor: pointer; }
+    button.active { background: #4CAF50; color: white; }
+    .gallery { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 15px; }
+    .item { width: 160px; border-radius: 8px; overflow: hidden; text-align: center; background: white; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+    .item .img { height: 110px; display: flex; align-items: center; justify-content: center; font-size: 50px; }
+    .item p { padding: 8px; font-size: 13px; color: #555; }
+    .tag { font-size: 11px; background: #4CAF50; color: white; border-radius: 10px; padding: 2px 8px; margin-bottom: 8px; display: inline-block; }
+  </style>
+</head>
+<body>
+  <h2>Image Gallery</h2>
+  <div class="filters">
+    <button class="active" onclick="filter('all',this)">All</button>
+    <button onclick="filter('nature',this)">Nature</button>
+    <button onclick="filter('animals',this)">Animals</button>
+    <button onclick="filter('city',this)">City</button>
+  </div>
+  <div class="gallery" id="gallery"></div>
+  <script>
+    var items = [
+      { emoji:"🌄", name:"Mountains",  cat:"nature"  },
+      { emoji:"🌊", name:"Ocean",      cat:"nature"  },
+      { emoji:"🌲", name:"Forest",     cat:"nature"  },
+      { emoji:"🦁", name:"Lion",       cat:"animals" },
+      { emoji:"🐘", name:"Elephant",   cat:"animals" },
+      { emoji:"🦋", name:"Butterfly",  cat:"animals" },
+      { emoji:"🌆", name:"Skyline",    cat:"city"    },
+      { emoji:"🌉", name:"Bridge",     cat:"city"    },
+      { emoji:"🏙️", name:"Downtown",   cat:"city"    },
+      { emoji:"🌸", name:"Flowers",    cat:"nature"  },
+      { emoji:"🐬", name:"Dolphin",    cat:"animals" },
+      { emoji:"🗼", name:"Tower",      cat:"city"    }
+    ];
+
+    function filter(cat, btn) {
+      document.querySelectorAll(".filters button").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      var list = cat === "all" ? items : items.filter(i => i.cat === cat);
+      var html = "";
+      list.forEach(function(i) {
+        html += `<div class="item"><div class="img">${i.emoji}</div><p>${i.name}</p><span class="tag">${i.cat}</span><br><br></div>`;
+      });
+      document.getElementById("gallery").innerHTML = html;
+    }
+
+    filter("all", document.querySelector(".filters button"));
+  </script>
+</body>
+</html>

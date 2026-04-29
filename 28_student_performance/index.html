@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Performance</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    h2 { text-align: center; color: #4CAF50; }
+    .charts { display: flex; flex-wrap: wrap; gap: 25px; justify-content: center; margin-top: 20px; }
+    .box { background: #f9f9f9; padding: 20px; border-radius: 10px; border: 1px solid #ddd; }
+    canvas { max-width: 320px; max-height: 240px; }
+    table { border-collapse: collapse; width: 100%; max-width: 600px; margin: 20px auto; }
+    th, td { border: 1px solid #ccc; padding: 9px; text-align: center; }
+    th { background: #4CAF50; color: white; }
+    tr:nth-child(even) { background: #f5f5f5; }
+  </style>
+</head>
+<body>
+  <h2>📊 Student Performance Data</h2>
+
+  <table>
+    <tr><th>Subject</th><th>Marks</th><th>Attendance %</th><th>Grade</th></tr>
+    <tr><td>Mathematics</td><td>88</td><td>92%</td><td>A</td></tr>
+    <tr><td>Physics</td><td>75</td><td>85%</td><td>B</td></tr>
+    <tr><td>Chemistry</td><td>62</td><td>78%</td><td>C</td></tr>
+    <tr><td>English</td><td>91</td><td>95%</td><td>A+</td></tr>
+    <tr><td>Computer</td><td>95</td><td>98%</td><td>A+</td></tr>
+  </table>
+
+  <div class="charts">
+    <div class="box">
+      <h3>Marks - Bar Chart</h3>
+      <canvas id="bar"></canvas>
+    </div>
+    <div class="box">
+      <h3>Attendance - Pie Chart</h3>
+      <canvas id="pie"></canvas>
+    </div>
+    <div class="box">
+      <h3>Progress - Line Chart</h3>
+      <canvas id="line"></canvas>
+    </div>
+  </div>
+
+  <script>
+    var subjects = ["Maths","Physics","Chemistry","English","Computer"];
+    var marks     = [88, 75, 62, 91, 95];
+    var attend    = [92, 85, 78, 95, 98];
+
+    new Chart(document.getElementById("bar"), {
+      type: "bar",
+      data: { labels: subjects, datasets: [{ label: "Marks", data: marks, backgroundColor: "#4CAF50" }] }
+    });
+
+    new Chart(document.getElementById("pie"), {
+      type: "doughnut",
+      data: {
+        labels: subjects,
+        datasets: [{ data: attend, backgroundColor: ["#4CAF50","#2196F3","#FF9800","#9C27B0","#00BCD4"] }]
+      }
+    });
+
+    new Chart(document.getElementById("line"), {
+      type: "line",
+      data: {
+        labels: ["Test 1","Test 2","Test 3","Test 4","Test 5"],
+        datasets: [{ label: "Avg Marks", data: [65, 70, 78, 85, 90], borderColor: "#4CAF50", fill: true, backgroundColor: "rgba(76,175,80,0.1)", tension: 0.4 }]
+      }
+    });
+  </script>
+</body>
+</html>

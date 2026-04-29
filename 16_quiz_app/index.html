@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Quiz App</title>
+  <style>
+    body { font-family: Arial; padding: 30px; max-width: 550px; margin: auto; }
+    .question { font-size: 18px; font-weight: bold; margin-bottom: 15px; }
+    .option { display: block; padding: 10px 15px; margin: 8px 0; background: #f0f0f0; border: 2px solid #ddd; border-radius: 6px; cursor: pointer; }
+    .option:hover { background: #ddd; }
+    .option.correct { background: #c8f7c5; border-color: #4CAF50; }
+    .option.wrong   { background: #f7c5c5; border-color: #e44; }
+    button { margin-top: 15px; padding: 10px 25px; background: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
+    #score { font-size: 22px; font-weight: bold; }
+    #progress { color: #888; margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+  <h2>📝 Quiz</h2>
+  <div id="progress"></div>
+  <div id="quiz"></div>
+  <script>
+    var qs = [
+      { q: "What does HTML stand for?",
+        opts: ["Hyper Text Markup Language","High Text Machine Language","Hyperlinks and Text Markup Language","None"],
+        ans: 0 },
+      { q: "Which tag is used for the largest heading?",
+        opts: ["<h6>","<heading>","<h1>","<head>"],
+        ans: 2 },
+      { q: "Which language adds interactivity to web pages?",
+        opts: ["HTML","CSS","JavaScript","Python"],
+        ans: 2 },
+      { q: "What does CSS stand for?",
+        opts: ["Colorful Style Sheets","Cascading Style Sheets","Computer Style Sheets","Creative Style Sheets"],
+        ans: 1 },
+      { q: "Which HTML tag is used to create a hyperlink?",
+        opts: ["<link>","<href>","<a>","<url>"],
+        ans: 2 }
+    ];
+
+    var current = 0, score = 0;
+
+    function show() {
+      if (current >= qs.length) {
+        document.getElementById("quiz").innerHTML = `<div id="score">🎉 Your Score: ${score} / ${qs.length}</div><br><button onclick="restart()">Restart</button>`;
+        document.getElementById("progress").innerText = "";
+        return;
+      }
+      var q = qs[current];
+      document.getElementById("progress").innerText = "Question " + (current+1) + " of " + qs.length;
+      var html = `<div class="question">${q.q}</div>`;
+      q.opts.forEach(function(opt, i) {
+        html += `<div class="option" id="opt${i}" onclick="answer(${i})">${opt}</div>`;
+      });
+      document.getElementById("quiz").innerHTML = html;
+    }
+
+    function answer(i) {
+      var q = qs[current];
+      document.querySelectorAll(".option").forEach(function(el) { el.onclick = null; });
+      if (i === q.ans) {
+        document.getElementById("opt"+i).classList.add("correct");
+        score++;
+      } else {
+        document.getElementById("opt"+i).classList.add("wrong");
+        document.getElementById("opt"+q.ans).classList.add("correct");
+      }
+      setTimeout(function() { current++; show(); }, 1000);
+    }
+
+    function restart() { current = 0; score = 0; show(); }
+    show();
+  </script>
+</body>
+</html>

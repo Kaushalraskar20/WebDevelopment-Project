@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Photo Gallery</title>
+  <style>
+    body { font-family: Arial; padding: 20px; background: #f5f5f5; }
+    .gallery { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; }
+    .gallery-item { position: relative; overflow: hidden; border-radius: 8px; width: 200px; height: 160px; }
+    .gallery-item div.photo {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 60px; background: #ccc;
+      transition: transform 0.3s;
+    }
+    .overlay {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6); color: white;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity 0.3s; font-size: 14px;
+    }
+    .gallery-item:hover .photo { transform: scale(1.2); }
+    .gallery-item:hover .overlay { opacity: 1; }
+  </style>
+</head>
+<body>
+  <h2 style="text-align:center">Photo Gallery</h2>
+  <div class="gallery">
+    <div class="gallery-item"><div class="photo">🌄</div><div class="overlay">Mountains</div></div>
+    <div class="gallery-item"><div class="photo">🌊</div><div class="overlay">Ocean</div></div>
+    <div class="gallery-item"><div class="photo">🌲</div><div class="overlay">Forest</div></div>
+    <div class="gallery-item"><div class="photo">🌸</div><div class="overlay">Flowers</div></div>
+    <div class="gallery-item"><div class="photo">🦁</div><div class="overlay">Wildlife</div></div>
+    <div class="gallery-item"><div class="photo">🌆</div><div class="overlay">City</div></div>
+    <div class="gallery-item"><div class="photo">🏖️</div><div class="overlay">Beach</div></div>
+    <div class="gallery-item"><div class="photo">❄️</div><div class="overlay">Snow</div></div>
+  </div>
+</body>
+</html>

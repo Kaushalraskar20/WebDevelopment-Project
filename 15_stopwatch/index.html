@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Stopwatch</title>
+  <style>
+    body { font-family: Arial; text-align: center; padding: 50px; }
+    #time { font-size: 64px; font-weight: bold; color: #333; margin: 20px 0; letter-spacing: 3px; }
+    button { padding: 12px 30px; margin: 8px; font-size: 18px; border: none; border-radius: 8px; cursor: pointer; }
+    #startBtn { background: #4CAF50; color: white; }
+    #stopBtn  { background: #e44; color: white; }
+    #resetBtn { background: #888; color: white; }
+  </style>
+</head>
+<body>
+  <h2>⏱ Stopwatch</h2>
+  <div id="time">00:00:00</div>
+  <br>
+  <button id="startBtn" onclick="start()">▶ Start</button>
+  <button id="stopBtn"  onclick="stop()">⏸ Stop</button>
+  <button id="resetBtn" onclick="reset()">🔄 Reset</button>
+  <script>
+    var timer = null;
+    var ms = 0;
+
+    function update() {
+      ms++;
+      var h = Math.floor(ms / 3600);
+      var m = Math.floor((ms % 3600) / 60);
+      var s = ms % 60;
+      document.getElementById("time").innerText =
+        pad(h) + ":" + pad(m) + ":" + pad(s);
+    }
+
+    function pad(n) { return String(n).padStart(2, "0"); }
+    function start() { if (!timer) timer = setInterval(update, 1000); }
+    function stop()  { clearInterval(timer); timer = null; }
+    function reset() { stop(); ms = 0; document.getElementById("time").innerText = "00:00:00"; }
+  </script>
+</body>
+</html>

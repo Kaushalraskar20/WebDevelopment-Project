@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Weather Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { font-family: Arial; padding: 20px; background: #f0f8ff; }
+    h2 { text-align: center; color: #1565C0; }
+    .cards { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin: 20px 0; }
+    .card { background: white; padding: 15px 25px; border-radius: 10px; text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+    .card .val { font-size: 28px; font-weight: bold; color: #1565C0; }
+    .charts { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+    .chart-box { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+    canvas { max-width: 320px; max-height: 240px; }
+  </style>
+</head>
+<body>
+  <h2>🌤 Weekly Weather Dashboard</h2>
+  <div class="cards">
+    <div class="card"><div class="val">32°C</div><div>Max Temp</div></div>
+    <div class="card"><div class="val">18°C</div><div>Min Temp</div></div>
+    <div class="card"><div class="val">65%</div><div>Avg Humidity</div></div>
+    <div class="card"><div class="val">12mm</div><div>Total Rain</div></div>
+  </div>
+  <div class="charts">
+    <div class="chart-box">
+      <h3>Temperature (Line)</h3>
+      <canvas id="lineChart"></canvas>
+    </div>
+    <div class="chart-box">
+      <h3>Rainfall (Bar)</h3>
+      <canvas id="barChart"></canvas>
+    </div>
+    <div class="chart-box">
+      <h3>Weather Type (Pie)</h3>
+      <canvas id="pieChart"></canvas>
+    </div>
+  </div>
+  <script>
+    var days = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+
+    new Chart(document.getElementById("lineChart"), {
+      type: "line",
+      data: {
+        labels: days,
+        datasets: [
+          { label: "Max °C", data: [30,32,29,31,28,33,30], borderColor: "#e44", fill: false, tension: 0.3 },
+          { label: "Min °C", data: [18,20,17,19,16,21,18], borderColor: "#2196F3", fill: false, tension: 0.3 }
+        ]
+      }
+    });
+
+    new Chart(document.getElementById("barChart"), {
+      type: "bar",
+      data: {
+        labels: days,
+        datasets: [{ label: "Rainfall (mm)", data: [0,2,5,1,0,4,0], backgroundColor: "#2196F3" }]
+      }
+    });
+
+    new Chart(document.getElementById("pieChart"), {
+      type: "pie",
+      data: {
+        labels: ["Sunny","Cloudy","Rainy"],
+        datasets: [{ data: [4,2,1], backgroundColor: ["#FFC107","#90A4AE","#2196F3"] }]
+      }
+    });
+  </script>
+</body>
+</html>

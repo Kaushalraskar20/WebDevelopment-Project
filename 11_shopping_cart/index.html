@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shopping Cart</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    table { border-collapse: collapse; width: 100%; max-width: 550px; }
+    th, td { border: 1px solid #ccc; padding: 10px; text-align: center; }
+    th { background: #4CAF50; color: white; }
+    button { padding: 5px 12px; cursor: pointer; font-size: 16px; }
+    .total { font-size: 20px; font-weight: bold; margin-top: 15px; color: #e44; }
+  </style>
+</head>
+<body>
+  <h2>Shopping Cart</h2>
+  <table>
+    <tr><th>Product</th><th>Price</th><th>Qty</th><th>Subtotal</th></tr>
+    <tr>
+      <td>Notebook</td><td>₹50</td>
+      <td><button onclick="change(0,-1)">-</button> <span id="q0">1</span> <button onclick="change(0,1)">+</button></td>
+      <td id="s0">₹50</td>
+    </tr>
+    <tr>
+      <td>Pen</td><td>₹20</td>
+      <td><button onclick="change(1,-1)">-</button> <span id="q1">1</span> <button onclick="change(1,1)">+</button></td>
+      <td id="s1">₹20</td>
+    </tr>
+    <tr>
+      <td>Eraser</td><td>₹10</td>
+      <td><button onclick="change(2,-1)">-</button> <span id="q2">1</span> <button onclick="change(2,1)">+</button></td>
+      <td id="s2">₹10</td>
+    </tr>
+  </table>
+  <div class="total" id="total">Total: ₹80</div>
+  <script>
+    var prices = [50, 20, 10];
+    var qty    = [1, 1, 1];
+
+    function change(i, by) {
+      qty[i] = Math.max(0, qty[i] + by);
+      document.getElementById("q" + i).innerText = qty[i];
+      document.getElementById("s" + i).innerText = "₹" + (prices[i] * qty[i]);
+      var total = prices.reduce(function(sum, p, j) { return sum + p * qty[j]; }, 0);
+      document.getElementById("total").innerText = "Total: ₹" + total;
+    }
+  </script>
+</body>
+</html>

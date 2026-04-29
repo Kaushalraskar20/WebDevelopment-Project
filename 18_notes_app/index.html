@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Notes App</title>
+  <style>
+    body { font-family: Arial; padding: 25px; max-width: 500px; margin: auto; }
+    textarea { width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+    button.add { padding: 10px 20px; background: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 8px; }
+    .note { background: #fffde7; padding: 12px; border-radius: 6px; margin-top: 10px; border-left: 4px solid #f0c040; display: flex; justify-content: space-between; }
+    .note button { background: #e44; color: white; border: none; padding: 4px 10px; border-radius: 4px; cursor: pointer; }
+    small { color: #888; font-size: 11px; }
+  </style>
+</head>
+<body>
+  <h2>📝 Notes App</h2>
+  <textarea id="noteInput" rows="3" placeholder="Write your note here..."></textarea><br>
+  <button class="add" onclick="addNote()">Add Note</button>
+  <div id="notes"></div>
+  <script>
+    var notes = JSON.parse(localStorage.getItem("notes") || "[]");
+
+    function render() {
+      var html = "";
+      notes.forEach(function(n, i) {
+        html += `<div class="note"><div><div>${n.text}</div><small>${n.date}</small></div><button onclick="del(${i})">Delete</button></div>`;
+      });
+      document.getElementById("notes").innerHTML = html || "<p style='color:#aaa'>No notes yet.</p>";
+    }
+
+    function addNote() {
+      var val = document.getElementById("noteInput").value.trim();
+      if (!val) return;
+      notes.unshift({ text: val, date: new Date().toLocaleString() });
+      localStorage.setItem("notes", JSON.stringify(notes));
+      document.getElementById("noteInput").value = "";
+      render();
+    }
+
+    function del(i) {
+      notes.splice(i, 1);
+      localStorage.setItem("notes", JSON.stringify(notes));
+      render();
+    }
+
+    render();
+  </script>
+</body>
+</html>

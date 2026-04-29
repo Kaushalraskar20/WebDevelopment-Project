@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Basic Calculator</title>
+  <style>
+    body { font-family: Arial; display: flex; justify-content: center; padding: 40px; }
+    .calc { border: 1px solid #ccc; border-radius: 10px; padding: 20px; width: 250px; background: #222; }
+    #display { width: 100%; padding: 12px; font-size: 22px; text-align: right; background: #111; color: #0f0; border: none; border-radius: 5px; margin-bottom: 10px; box-sizing: border-box; }
+    .btns { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    button {
+      padding: 14px; font-size: 16px; cursor: pointer;
+      border: none; border-radius: 5px; background: #444; color: white;
+    }
+    button:hover { background: #666; }
+    .op { background: #e67e22; }
+    .eq { background: #4CAF50; grid-column: span 2; }
+    .clr { background: #e44; }
+  </style>
+</head>
+<body>
+  <div class="calc">
+    <input type="text" id="display" readonly value="0">
+    <div class="btns">
+      <button class="clr" onclick="clearAll()">C</button>
+      <button onclick="del()">⌫</button>
+      <button class="op" onclick="append('%')">%</button>
+      <button class="op" onclick="append('/')">÷</button>
+      <button onclick="append('7')">7</button>
+      <button onclick="append('8')">8</button>
+      <button onclick="append('9')">9</button>
+      <button class="op" onclick="append('*')">×</button>
+      <button onclick="append('4')">4</button>
+      <button onclick="append('5')">5</button>
+      <button onclick="append('6')">6</button>
+      <button class="op" onclick="append('-')">-</button>
+      <button onclick="append('1')">1</button>
+      <button onclick="append('2')">2</button>
+      <button onclick="append('3')">3</button>
+      <button class="op" onclick="append('+')">+</button>
+      <button onclick="append('0')" style="grid-column:span 2">0</button>
+      <button onclick="append('.')">.</button>
+      <button class="eq" onclick="calculate()">=</button>
+    </div>
+  </div>
+  <script>
+    var expr = "";
+    function append(val) {
+      if (expr === "Error") expr = "";
+      expr += val;
+      document.getElementById("display").value = expr;
+    }
+    function clearAll() { expr = ""; document.getElementById("display").value = "0"; }
+    function del() { expr = expr.slice(0, -1); document.getElementById("display").value = expr || "0"; }
+    function calculate() {
+      try { expr = String(eval(expr)); } catch(e) { expr = "Error"; }
+      document.getElementById("display").value = expr;
+    }
+  </script>
+</body>
+</html>

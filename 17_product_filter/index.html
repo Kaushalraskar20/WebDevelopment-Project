@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Product Filtering</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    .filters { margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap; }
+    button { padding: 8px 18px; border: 2px solid #4CAF50; background: white; border-radius: 20px; cursor: pointer; font-size: 14px; }
+    button.active { background: #4CAF50; color: white; }
+    .products { display: flex; flex-wrap: wrap; gap: 15px; }
+    .card { border: 1px solid #ddd; padding: 15px; border-radius: 8px; width: 140px; text-align: center; }
+    .emoji { font-size: 40px; }
+    .tag { font-size: 11px; color: white; background: #888; border-radius: 10px; padding: 2px 8px; }
+  </style>
+</head>
+<body>
+  <h2>Product Filter</h2>
+  <div class="filters">
+    <button class="active" onclick="filter('all', this)">All</button>
+    <button onclick="filter('electronics', this)">Electronics</button>
+    <button onclick="filter('food', this)">Food</button>
+    <button onclick="filter('clothing', this)">Clothing</button>
+  </div>
+  <div class="products" id="products"></div>
+  <script>
+    var items = [
+      { name:"Laptop",    cat:"electronics", emoji:"💻" },
+      { name:"Phone",     cat:"electronics", emoji:"📱" },
+      { name:"Pizza",     cat:"food",        emoji:"🍕" },
+      { name:"Burger",    cat:"food",        emoji:"🍔" },
+      { name:"T-Shirt",   cat:"clothing",    emoji:"👕" },
+      { name:"Shoes",     cat:"clothing",    emoji:"👟" },
+      { name:"Headphones",cat:"electronics", emoji:"🎧" },
+      { name:"Salad",     cat:"food",        emoji:"🥗" }
+    ];
+
+    function filter(cat, btn) {
+      document.querySelectorAll(".filters button").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      var list = cat === "all" ? items : items.filter(i => i.cat === cat);
+      var html = "";
+      list.forEach(function(i) {
+        html += `<div class="card"><div class="emoji">${i.emoji}</div><p>${i.name}</p><span class="tag">${i.cat}</span></div>`;
+      });
+      document.getElementById("products").innerHTML = html;
+    }
+
+    filter("all", document.querySelector(".filters button"));
+  </script>
+</body>
+</html>

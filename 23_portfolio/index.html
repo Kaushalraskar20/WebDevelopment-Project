@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Portfolio</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial; color: #333; }
+    nav { background: #222; display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; position: sticky; top: 0; z-index: 10; }
+    nav .logo { color: #4CAF50; font-size: 20px; font-weight: bold; }
+    nav a { color: white; text-decoration: none; margin-left: 20px; font-size: 14px; }
+    nav a:hover { color: #4CAF50; }
+    .hero { background: linear-gradient(135deg, #4CAF50, #1b5e20); color: white; text-align: center; padding: 80px 20px; }
+    .hero h1 { font-size: 42px; }
+    .hero p { font-size: 18px; margin-top: 10px; opacity: 0.9; }
+    section { padding: 50px 30px; max-width: 900px; margin: auto; }
+    h2 { color: #4CAF50; margin-bottom: 20px; border-left: 4px solid #4CAF50; padding-left: 10px; }
+    .skills-wrap { display: flex; flex-wrap: wrap; gap: 10px; }
+    .skill { background: #4CAF50; color: white; padding: 8px 18px; border-radius: 20px; }
+    .projects { display: flex; flex-wrap: wrap; gap: 20px; }
+    .project-card { border: 1px solid #ddd; padding: 18px; border-radius: 8px; flex: 1; min-width: 220px; }
+    .project-card h3 { color: #333; margin-bottom: 8px; }
+    .project-card p { font-size: 13px; color: #555; }
+    .contact-info p { margin: 8px 0; font-size: 15px; }
+    footer { background: #222; color: white; text-align: center; padding: 20px; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">&lt;JD /&gt;</div>
+    <div>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <h1>Hi, I'm John Doe 👋</h1>
+    <p>Aspiring Web Developer | Computer Science Student</p>
+  </div>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>I am a passionate Computer Science student from Pune, Maharashtra. I love building web applications and learning new technologies. Currently exploring full-stack web development and looking for opportunities to grow my skills.</p>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills-wrap">
+      <span class="skill">HTML</span>
+      <span class="skill">CSS</span>
+      <span class="skill">JavaScript</span>
+      <span class="skill">Python</span>
+      <span class="skill">MySQL</span>
+      <span class="skill">MongoDB</span>
+      <span class="skill">Git</span>
+      <span class="skill">Node.js</span>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="projects">
+      <div class="project-card">
+        <h3>📝 To-Do App</h3>
+        <p>A simple task manager built with HTML, CSS, JavaScript and localStorage to persist tasks.</p>
+      </div>
+      <div class="project-card">
+        <h3>🛒 Shopping Cart</h3>
+        <p>A dynamic shopping cart with product listing, quantity control, and total price calculation.</p>
+      </div>
+      <div class="project-card">
+        <h3>📊 Student Portal</h3>
+        <p>A student record management system using Node.js and MongoDB for backend storage.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="contact-info">
+      <p>📧 johndoe@email.com</p>
+      <p>📞 +91 9876543210</p>
+      <p>📍 Pune, Maharashtra, India</p>
+      <p>🔗 github.com/johndoe</p>
+    </div>
+  </section>
+
+  <footer>&copy; 2025 John Doe. All rights reserved.</footer>
+</body>
+</html>

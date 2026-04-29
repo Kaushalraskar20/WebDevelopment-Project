@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blog Layout</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial; background: #f5f5f5; }
+    header { background: #4CAF50; color: white; padding: 20px 30px; text-align: center; }
+    header h1 { font-size: 28px; }
+    header p { font-size: 14px; opacity: 0.85; }
+    .container { display: flex; gap: 20px; padding: 20px 30px; max-width: 960px; margin: auto; }
+    main { flex: 3; }
+    aside { flex: 1; }
+    .post { background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
+    .post h2 { color: #333; margin-bottom: 8px; }
+    .post .meta { font-size: 12px; color: #888; margin-bottom: 10px; }
+    .post p { font-size: 14px; line-height: 1.6; color: #555; }
+    .post a { color: #4CAF50; text-decoration: none; font-size: 13px; }
+    .widget { background: white; padding: 15px; border-radius: 8px; margin-bottom: 15px; }
+    .widget h3 { color: #4CAF50; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+    .widget ul { list-style: none; }
+    .widget ul li { padding: 5px 0; font-size: 13px; border-bottom: 1px solid #f0f0f0; }
+    footer { background: #333; color: white; text-align: center; padding: 15px; font-size: 13px; }
+    @media(max-width: 600px) { .container { flex-direction: column; } }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📰 MyBlog</h1>
+    <p>Sharing knowledge, one post at a time</p>
+  </header>
+
+  <div class="container">
+    <main>
+      <div class="post">
+        <h2>Getting Started with HTML</h2>
+        <div class="meta">📅 April 20, 2025 | ✍️ John Doe | 🏷️ HTML</div>
+        <p>HTML is the foundation of every webpage. In this post, we explore the basic tags and structure of an HTML document, making it easy for beginners to get started.</p>
+        <a href="#">Read More →</a>
+      </div>
+      <div class="post">
+        <h2>CSS Flexbox Explained</h2>
+        <div class="meta">📅 April 22, 2025 | ✍️ Jane Smith | 🏷️ CSS</div>
+        <p>Flexbox is one of the most powerful CSS layout tools. Learn how to use it to align and distribute elements with ease in modern web design.</p>
+        <a href="#">Read More →</a>
+      </div>
+      <div class="post">
+        <h2>JavaScript for Beginners</h2>
+        <div class="meta">📅 April 24, 2025 | ✍️ John Doe | 🏷️ JavaScript</div>
+        <p>JavaScript brings your webpages to life. This beginner-friendly guide covers variables, functions, loops, and DOM manipulation with simple examples.</p>
+        <a href="#">Read More →</a>
+      </div>
+    </main>
+
+    <aside>
+      <div class="widget">
+        <h3>Categories</h3>
+        <ul>
+          <li>🏷️ HTML (5)</li>
+          <li>🏷️ CSS (4)</li>
+          <li>🏷️ JavaScript (6)</li>
+          <li>🏷️ Python (3)</li>
+        </ul>
+      </div>
+      <div class="widget">
+        <h3>Recent Posts</h3>
+        <ul>
+          <li>CSS Grid Layout</li>
+          <li>Intro to Python</li>
+          <li>What is an API?</li>
+        </ul>
+      </div>
+      <div class="widget">
+        <h3>About</h3>
+        <p style="font-size:13px;color:#555">A blog dedicated to web development and programming tutorials for beginners.</p>
+      </div>
+    </aside>
+  </div>
+
+  <footer>
+    &copy; 2025 MyBlog. All rights reserved.
+  </footer>
+</body>
+</html>
